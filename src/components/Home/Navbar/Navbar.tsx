@@ -1,3 +1,5 @@
+"use client";
+
 import MaxWidthWrapper from "@/components/Helper/MaxWidthWrapper";
 import {
   NavigationMenu,
@@ -10,14 +12,30 @@ import { navLinks } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Map, Menu } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface NavbarProps {
   openNav: () => void;
 }
 
 const Navbar = ({ openNav }: NavbarProps) => {
+  const [navBg, setNavBg] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 90) setNavBg(true);
+      if (window.scrollY < 90) setNavBg(false);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="bg-blue-950 transition-all duration-200 h-[12vh] z-[1000] fixed w-full">
+    <div
+      className={` ${
+        navBg ? "bg-blue-950" : "fixed"
+      } transition-all duration-200 h-[12vh] z-[1000] fixed w-full`}
+    >
       <MaxWidthWrapper className="flex items-center justify-between">
         {/* logo */}
         <div className="flex items-center space-x-2">
