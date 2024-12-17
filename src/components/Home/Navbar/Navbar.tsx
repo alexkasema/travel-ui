@@ -11,9 +11,13 @@ import { cn } from "@/lib/utils";
 import { Map, Menu } from "lucide-react";
 import Link from "next/link";
 
-const Navbar = () => {
+interface NavbarProps {
+  openNav: () => void;
+}
+
+const Navbar = ({ openNav }: NavbarProps) => {
   return (
-    <div className="bg-blue-950 transition-all duration-200 h-[12vh] z-[1000]">
+    <div className="bg-blue-950 transition-all duration-200 h-[12vh] z-[1000] fixed w-full">
       <MaxWidthWrapper className="flex items-center justify-between">
         {/* logo */}
         <div className="flex items-center space-x-2">
@@ -45,7 +49,11 @@ const Navbar = () => {
           <button className="md:px-12 md:py-2.5 px-8 py-2 text-black text-base bg-white hover:bg-slate-300 transition-all duration-200 rounded-md font-medium">
             Book Now
           </button>
-          <Menu size={24} className="text-white cursor-pointer lg:hidden" />
+          <Menu
+            size={24}
+            className="text-white cursor-pointer lg:hidden"
+            onClick={openNav}
+          />
         </div>
       </MaxWidthWrapper>
     </div>

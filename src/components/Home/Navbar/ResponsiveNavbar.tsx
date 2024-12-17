@@ -1,12 +1,18 @@
-import React from "react";
-import Navbar from "./Navbar";
+"use client";
+
+import { useState } from "react";
 import MobileNavbar from "./MobileNavbar";
+import Navbar from "./Navbar";
 
 const ResponsiveNavbar = () => {
+  const [showNav, setShowNav] = useState(false);
+  const handleShowNav = () => setShowNav(true);
+  const handleCloseNav = () => setShowNav(false);
+
   return (
     <>
-      <Navbar />
-      <MobileNavbar />
+      <Navbar openNav={handleShowNav} />
+      <MobileNavbar showNav={showNav} closeNav={handleCloseNav} />
     </>
   );
 };
