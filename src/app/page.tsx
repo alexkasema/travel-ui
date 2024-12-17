@@ -1,7 +1,13 @@
-import React from "react";
+import Hero from "@/components/Hero/Hero";
 
 const HomePage = () => {
-  return <div className="text-5xl text-purple-500">HomePage</div>;
+  return (
+    <>
+      <section className="overflow-hidden">
+        <Hero />
+      </section>
+    </>
+  );
 };
 
 export default HomePage;
